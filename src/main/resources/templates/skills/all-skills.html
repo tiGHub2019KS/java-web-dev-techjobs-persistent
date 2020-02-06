@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container body-content">
+
+<header th:replace="fragments :: page-header"></header>
+
+<p th:unless="${skills} and ${skills.size()}">no jobs!</p>
+
+<table class=table table-striped>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Job With Skill</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    </thead>
+    <tr th:each="skill : ${skills}">
+        <td th:text="${skill.name}"></a></td>
+        <td th:text="${skill.description}"></td>
+        <td><a th:href="@{/list/jobs(column=skill,value=${skill.name})}">View</a></td>
+        <td><a th:href="@{/skills/delete/{id}(id=${skill.id})}"><button class="btn btn-primary">Delete</button></a></td>
+        <td><a th:href="@{/skills/update/{id}(id=${skill.id})}"><button class="btn btn-primary">Update</button></a></td>
+
+    </tr>
+</table>
+<a th:href="@{/skills/add}"><button class="btn btn-primary">Add Skills</button> </a>
+
+</body>
+</html>

@@ -25,37 +25,47 @@ public class JobData {
 
         ArrayList<Job> results = new ArrayList<>();
 
-        if (value.toLowerCase().equals("all")){
+        if (value.toLowerCase().equals("all")) {
             return (ArrayList<Job>) allJobs;
         }
 
-        if (column.equals("all")){
+        if (column.equals("all")) {
             results = findByValue(value, allJobs);
             return results;
         }
-        for (Job job : allJobs) {
-
-            String aValue = getFieldValue(job, column);
-
-            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
-                results.add(job);
+            for (Job job : allJobs) {
+                String aValue = getFieldValue(job, column);
+                if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
+                    results.add(job);
+                }
             }
+            return results;
         }
 
-        return results;
-    }
+//        else {
+//            for (Job job : allJobs) {
+//
+//                String aValue = getFieldValue(job, column);
+//
+//                if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
+//                    results.add(job);
+//                }
+//            }
+//        }
+//
+//        return results;
+//    }
 
     public static String getFieldValue(Job job, String fieldName){
         String theValue;
-        if (fieldName.equals("name")){
+        if (fieldName.equals("name")) {
             theValue = job.getName();
-        } else if (fieldName.equals("employer")){
+        } else if (fieldName.equals("employer")) {
             theValue = job.getEmployer().toString();
         } else {
-            theValue = job.toString();
+            theValue = job.getSkills().toString();
         }
-
-        return theValue;
+          return theValue;
     }
 
     /**
@@ -74,19 +84,19 @@ public class JobData {
 
             if (job.getName().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);
-            } else if (job.getEmployer().toLowerCase().contains(value.toLowerCase())) {
+            } else if (job.getEmployer().toString().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);
-            } else if (job.getSkills().contains(value.toLowerCase())) {
+            } else if (job.getSkills().toString().toLowerCase().contains(value.toLowerCase())) {
+//            } else if (job.getSkills().contains(value.toLowerCase())) {
                 results.add(job);
-            } else if (job.toString().toLowerCase().contains(value.toLowerCase())) {
-                results.add(job);
+//            } else if (job.toString().toLowerCase().contains(value.toLowerCase())) {
+//                results.add(job);
             }
 
         }
 
         return results;
     }
-
-
 }
+
 

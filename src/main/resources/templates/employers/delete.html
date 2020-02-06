@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+
+<h1>Delete Employer</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<form method="post" th:action="@{/employers/delete}">
+     <div class="form-group">
+         <label th:for="name">Employer Name</label>
+         <input class="form-control" th:field="${employer.name}"/>
+         <span th:errors="${employer.name}" class="error"></span>
+     </div>
+
+    <div class="form-group">
+        <label th:for="location">Employer Location</label>
+        <input class="form-control" th:field="${employer.location}"/>
+        <span th:errors="${employer.location}" class="error"></span>
+    </div>
+
+    <input type="hidden" th:value="${employer.id}" name="employerId"/>
+    <input type="submit" value="Delete Employer"/>
+</form>
+
+</body>
+</html>

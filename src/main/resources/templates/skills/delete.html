@@ -4,12 +4,11 @@
 
 <body class="container  body-content">
 
-<h1>Add Skill</h1>
+<h1>Delete Skill</h1>
 
 <nav th:replace="fragments :: page-header"></nav>
 
-<form method="post" style="max-width:600px;">
-
+<form method="post" th:action="@{/skills/delete}">
     <div class="form-group">
         <label th:for="name">Skill Name</label>
         <input class="form-control" th:field="${skill.name}" />
@@ -21,8 +20,8 @@
         <input class="form-control" th:field="${skill.description}" />
         <span th:errors="${skill.description}" class="error"></span>
     </div>
-
-    <input type="submit" value="Add Skill" />
+    <input type="hidden" th:value="${skill.id}" name="skillId"/>
+    <input type="submit" value="Delete Skill" />
 </form>
 
 </body>

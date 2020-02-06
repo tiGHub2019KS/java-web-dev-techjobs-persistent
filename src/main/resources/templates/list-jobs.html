@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
+
 <head th:replace="fragments :: head">
 </head>
 <body>
@@ -14,21 +15,25 @@
         <tr th:each="job : ${jobs}">
             <td>
                 <p>
-                    Job Id:
+                    <span>Job Id:</span>
+
                     <a th:href="@{'/view/' + ${job.id}}" th:text="${job.id}"></a>
                 </p>
+                <p><span>Job Title: </span><span th:text="${job.name}"></span></p>
                 <p th:text="${'Name: ' + job.name}"></p>
                 <p>
-                    Employer:
+                    <span>Employer: </span>
+
                     <a th:href="@{'/employers/view/' + ${job.employer.id}}" th:text="${job.employer.name}"></a>
                 </p>
                 <p>
-                    Skills:
-                    <ul th:each="skill : ${job.skills}">
-                        <li>
-                            <a th:href="@{'/skills/view/' + ${skill.id}}" th:text="${skill.name}"></a>
-                        </li>
-                    </ul>
+                    <span>Skills: </span>
+
+                <ul th:each="skill : ${job.skills}">
+                    <li>
+                        <a th:href="@{'/skills/view/' + ${skill.id}}" th:text="${skill.name}"></a>
+                    </li>
+                </ul>
                 </p>
             </td>
         </tr>
